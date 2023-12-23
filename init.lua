@@ -41,13 +41,19 @@ P.S. You can delete this when you're done too. It's your config now :)
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+-- local autocmd = vim.api.nvim_create_autocmd
+-- local augroup = vim.api.nvim_create_augroup
+
+
+-- map leader key
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
     'git',
@@ -276,9 +282,6 @@ require('lazy').setup({
 -- Set highlight on search
 vim.o.hlsearch = false
 
--- Make line numbers default
-vim.wo.number = true
-
 -- Enable mouse mode
 vim.o.mouse = 'a'
 
@@ -292,6 +295,9 @@ vim.o.breakindent = true
 
 -- Save undo history
 vim.o.undofile = true
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 
 -- Case-insensitive searching UNLESS \C or capital in search
 vim.o.ignorecase = true
@@ -336,6 +342,51 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+
+vim.opt.guicursor = ""
+
+vim.opt.nu = true
+vim.opt.relativenumber = true
+
+-- These settings are now set automatically by vim-sleuth based on file context
+-- vim.opt.tabstop = 4
+-- vim.opt.softtabstop = 4
+-- vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+--
+-- augroup('setIndent', { clear = true })
+-- autocmd('Filetype', {
+--   group = 'setIndent',
+--   pattern = { 'xml', 'html', 'xhtml', 'css', 'scss', 'javascript', 'typescript',
+--     'yaml', 'javascriptreact', 'typescriptreact'
+--   },
+--   command = 'setlocal shiftwidth=2 tabstop=2'
+-- })
+
+-- c style indenting native to neovim
+-- vim.opt.smartindent = true
+
+-- word wrap
+vim.opt.wrap = false
+
+-- search refers to hitting /
+-- disable search term highlighting after search is complete
+vim.opt.hlsearch = false
+-- show search as you type it
+vim.opt.incsearch = true
+
+-- more terminal colors for advanced terminals
+vim.opt.termguicolors = true
+
+-- keep 10 lines above and below the cursor always
+vim.opt.scrolloff = 10
+
+vim.opt.isfname:append("@-@") -- some kind of filename pattern definition
+
+-- time (ms) before crash is detected
+vim.opt.updatetime = 50
+-- amount of chars recommended in a line
+vim.opt.colorcolumn = "80"
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`

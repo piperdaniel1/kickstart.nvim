@@ -1,0 +1,13 @@
+Okay so main priorities:
+ * Some kind of git integration in editor
+   This could just be running the Git commands inside the editor or
+   some kind of more window based solution. Either way it needs to be
+   super fast and easier than switching to a terminal and typing out the commands.
+   Also must include git signs on the left to show what I've changed.
+   Also must include ability to run Git blame and find who/when.
+ * Probably do the LSP + Mason thing. Must support tsx files fully. Ideally highlighting,
+   indenting, etc. Big priorities here are jump to definition keybind.
+ * Hotkey to grep entire workspace
+ * Hotkey to open telescope and switch to a file
+ * Harpoon
+ * Set indenting differently per language (per project?)
